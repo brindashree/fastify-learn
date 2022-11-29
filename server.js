@@ -1,6 +1,17 @@
 const fastify = require('fastify')({logger: true});
 const PORT = 5000;
 
+//register the plugin
+fastify.register(require('fastify-swagger'), {
+    exposeRoute: true,
+    routePrefix: '/docs',
+    swagger: {
+        info: {
+            title: 'fastify-api'
+        }
+    }
+});
+
 // register the routes
 fastify.register(require('./routes/items'));
 
